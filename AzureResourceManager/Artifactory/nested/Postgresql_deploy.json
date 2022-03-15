@@ -56,7 +56,8 @@
       "defaultValue": "Disabled"
     },
     "databases": {
-      "type": "object"
+      "type": "string",
+      "defaultValue": "artdb"      
     },
     "sslEnforcement": {
       "type": "string",
@@ -137,13 +138,13 @@
         {
           "type": "Microsoft.DBforPostgreSQL/servers/databases",
           "apiversion": "2017-12-01",
-          "name": "[concat(parameters('db_server'), '/', parameters('databases').properties[0].name)]",
+          "name": "[concat(parameters('db_server'), '/', parameters('databases'))]",
           "dependsOn": [
             "[resourceId('Microsoft.DBforPostgreSQL/servers', parameters('db_server'))]"
           ],
           "properties": {
-            "charset": "[parameters('databases').properties[0].charset]",
-            "collation": "[parameters('databases').properties[0].collation]"
+            "charset": "UTF8",
+            "collation": "English_United States.1252"
           }
         }
       ]
